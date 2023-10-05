@@ -8,3 +8,11 @@ css = Bundle("src/main.css", output="dist/main.css")
 
 assets.register("css", css)
 css.build()
+
+
+@app.route("/")
+def homepage():
+    return render_template("index.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
