@@ -7,6 +7,8 @@ from todos import todos
 
 app = Flask(__name__)
 
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
 assets = Environment(app)
 css = Bundle("src/main.css", output="dist/main.css")
 js = Bundle("src/*.js", output="dist/main.js")
