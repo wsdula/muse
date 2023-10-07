@@ -1,9 +1,8 @@
 # app.py
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_assets import Bundle, Environment
 
-from todos import todos
 
 app = Flask(__name__)
 
@@ -20,22 +19,19 @@ js.build()
 
 
 @app.route("/")
-def homepage():
+def index():
     return render_template("index.html")
 
-@app.route("/search", methods=["POST"])
-def search_todo():
-    search_term = request.form.get("search")
+@app.route('/addIdea', methods=['POST'])
+def addIdea():
+    file = request.files['file']
+    text = request.form['notes']
 
-    if not len(search_term):
-        return render_template("todo.html", todos=[])
+    # Process the file and text here
 
-    res_todos = []
-    for todo in todos:
-        if search_term in todo["title"]:
-            res_todos.append(todo)
+    result = "Form submitted successfully!"
 
-    return render_template("todo.html", todos=res_todos)
+    return result
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="w-small w-2/3 mx-auto py-10 text-gray-600">
+    <form id="form"
+      hx-encoding="multipart/form-data"
+      hx-post="/addIdea"
+      hx-target="#message"
+      hx-swap-oob="true"
+    >
+      <div>
+        <label> File Upload </label>
+        <input type="file" name="file">
+        <!-- add hx-post="addIdea/file" for validation script-->
+      </div>
+      <div>
+        <label>Notes</label>
+        <input name="notes">
+      </div>
+      <button type='submit'>Submit</button>
+    </form>
+    <span id="message"></span>
+</div>
+{% endblock content %}
