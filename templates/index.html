@@ -3,7 +3,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="w-small w-2/3 mx-auto py-10 text-gray-600">
+<div class="w-small w-2/3 mx-auto py-10 text-gray-200">
     <form id="form"
       hx-encoding="multipart/form-data"
       hx-post="/addIdea"
@@ -21,6 +21,9 @@
       </div>
       <button type='submit'>Submit</button>
     </form>
-    <span id="message"></span>
+    <span id="message" class="text-red-100"></span>
 </div>
+<h1 class="text-3xl font-bold underline text-red-100">
+    Hello world!
+  </h1>
 {% endblock content %}

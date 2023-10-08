@@ -9,12 +9,12 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 assets = Environment(app)
-css = Bundle("src/main.css", output="dist/main.css")
+#css = Bundle("src/input.css", output="dist/output.css")
 js = Bundle("src/*.js", output="dist/main.js")
 
-assets.register("css", css)
+#assets.register("css", css)
 assets.register("js", js)
-css.build()
+#css.build()
 js.build()
 
 

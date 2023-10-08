@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
 
-    {% assets 'css' %}
-      <link rel="stylesheet" href="{{ ASSET_URL }}">
-    {% endassets %}
+    <!-- {% assets 'css' %} -->
+      <link rel="stylesheet" href="templates/output.css">
+    <!-- {% endassets %} -->
 
     <!-- new -->
     {% assets 'js' %}
@@ -19,7 +19,7 @@
 
     <title>Da app</title>
   </head>
-  <body class="bg-blue-100">
+  <body class="bg-blue-500">
     {% block content %}
     {% endblock content %}
   </body>
