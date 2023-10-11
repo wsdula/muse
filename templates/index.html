@@ -3,27 +3,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="w-small w-2/3 mx-auto py-10 text-gray-200">
+
+
+<!-- separating nav bar from rest of screen -->
+<div class="w-small w-2/3 rounded mx-auto bg-white flex justify-center">
     <form id="form"
+      class="content-center m-2"
+      onkeydown="return event.key != 'Enter';"
       hx-encoding="multipart/form-data"
-      hx-post="/addIdea"
+      hx-post="/submitIdea"
       hx-target="#message"
-      hx-swap-oob="true"
     >
       <div>
-        <label> File Upload </label>
-        <input type="file" name="file">
+        <label for="fileInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Upload file
+        </label>
+        <input id="fileInput"
+          name="file"
+          type="file"
+          class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help">
+        <div id="user_avatar_help"
+          class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+          A profile picture is useful to confirm you are logged into your account
+        </div>
         <!-- add hx-post="addIdea/file" for validation script-->
       </div>
       <div>
-        <label>Notes</label>
-        <input name="notes">
+        <label for="textarea"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Describe your idea
+        </label>
+        <textarea id="textarea"
+          name="notes"
+          rows="4"
+          placeholder="Leave a comment..."
+          class="block p-2.5 mb-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
       </div>
-      <button type='submit'>Submit</button>
+      <div class="flex flex-wrap">
+        <h3 class="font-medium text-sm">Add tags to your idea</h3>
+        <input id="hashtags"
+          name="hashtags"
+          type="text"
+          autocomplete="off"
+          placeholder="Type your hashtag & hit space."
+          hx-post="/tags"
+          hx-trigger="keydown[key==' '] delay:100ms"
+          hx-target="#tag-container"
+          hx-swap="beforeend"
+          hx-on::after-request="if(event.detail.successful) this.value = ''"
+          class="block p-2.5 mb-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <div id="tag-container" class="flex flex-wrap">
+        <!--<div class="tagbox" hx-post="/tags_remove" hx-on::after-request="this.remove()">test</div>-->
+        </div>
+      </div>
+      <button id="formSubmit"
+        type="submit"
+        class="text-white mb-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Submit
+      </button>
+      <span id="message"
+        class="text-red-400 inset-x-0 bottom-0 flex justify-center">
+      </span>
     </form>
-    <span id="message" class="text-red-100"></span>
+
 </div>
-<h1 class="text-3xl font-bold underline text-red-100">
-    Hello world!
-  </h1>
 {% endblock content %}
