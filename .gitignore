@@ -3348,3 +3348,4 @@ venv/lib/python3.10/site-packages/werkzeug-3.0.0.dist-info/RECORD
 venv/lib/python3.10/site-packages/werkzeug-3.0.0.dist-info/WHEEL
 package-lock.json
 package.json
+.git-credentials
