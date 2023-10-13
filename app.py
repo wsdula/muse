@@ -1,21 +1,12 @@
 # app.py
 
 from flask import Flask, render_template, request, jsonify
-from flask_assets import Bundle, Environment
+# from flask_assets import Bundle, Environment
 import logging
 
 app = Flask(__name__)
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-
-assets = Environment(app)
-css = Bundle('src/input.css', output='dist/output.css')
-js = Bundle('src/*.js', output='dist/main.js')
-
-assets.register('css', css)
-assets.register('js', js)
-css.build()
-js.build()
 
 tagsList = []
 
@@ -37,7 +28,7 @@ def tags():
     else:
         #Take in a tag, trim it, then push it back in it's respective html element
         tagText = request.form['hashtags'].strip().lower()
-        result = '''<input disabled id=tag value='{}' class="tagbox" hx-delete="/tags" hx-target="this" hx-on::after-request="this.remove()">'''.format(tagText)
+        result = '''<div id=tag class="m-2 w-auto font-medium text-sm pointer-events-auto bg-[#242424] text-white p-2.5 text-center rounded-3xl cursor-pointer hover:bg-gray-600" hx-delete="/tags" hx-target="this" hx-on::after-request="this.remove()">'''+tagText+'</div>'
 
         tagsList.append(str(tagText))
         logtext = tagText + " has been added to list: " + str(tagsList)
