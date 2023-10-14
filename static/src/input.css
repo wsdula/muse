@@ -4,7 +4,7 @@
 
 @layer components {
     .tagbox {
-        @apply m-2 w-2.5 font-medium text-sm pointer-events-auto bg-[#242424] text-white p-2.5 text-center rounded-3xl cursor-pointer hover:bg-gray-600;
+        @apply m-2 font-medium text-sm pointer-events-auto bg-[#242424] text-white p-2.5 text-center rounded-3xl cursor-pointer hover:bg-gray-600;
     }
    /* .tagdelete {
         @apply pointer-events-auto h-5 w-5 inline-block mr-2.5 rounded text-center text-[#ccc] bg-[#111] cursor-pointer;
